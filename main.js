@@ -4,16 +4,19 @@ import userRoute from './routes/userRoute.js'
 import mongoose from 'mongoose'
 import galleryItemRoute from './routes/gallleryItemRoute.js'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express()
 
-const connectionString = "mongodb://rmpndulshanrajapaksha_db_user:navod123@ac-7bc61fd-shard-00-00.18uv7o0.mongodb.net:27017,ac-7bc61fd-shard-00-01.18uv7o0.mongodb.net:27017,ac-7bc61fd-shard-00-02.18uv7o0.mongodb.net:27017/?ssl=true&replicaSet=atlas-121cbr-shard-0&authSource=admin&appName=Cluster0"
+const connectionString = process.env.DB_URL
 
 app.use((req, res, next) => {
   const token = req.header("Authorization")?.replace("Bearer ", "")
   
   if(token != null){
-    jwt.verify(token, "secret", 
+    jwt.verify(token, process.env.JWT_SECRET, 
       (err, decoded) => {
       if(decoded != null){
         req.user = decoded
