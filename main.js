@@ -4,6 +4,7 @@ import userRoute from './routes/userRoute.js'
 import mongoose from 'mongoose'
 import galleryItemRoute from './routes/gallleryItemRoute.js'
 import jwt from 'jsonwebtoken'
+import categoryRoute from './routes/categoryRoute.js'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -42,6 +43,8 @@ app.use(bodyParser.json())
 app.use('/api/users', userRoute)
 
 app.use('/api/gallery-items', galleryItemRoute)
+
+app.use('/api/category', categoryRoute)
 
 app.listen(3000, (req,res) => {
   console.log('Server is running on port 3000');
