@@ -90,3 +90,16 @@ export function loginUser(req, res) {
             })
         })
 }
+
+export function isAdminValid(req){
+    if(req.user == null){
+        return false
+    }
+    if(req.user.role !== "admin"){
+        res.status(403).json({ 
+            message: "Unauthorized" 
+        })
+        return false
+    }
+    return true
+}
