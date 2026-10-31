@@ -9,7 +9,7 @@ export function createRoom(req, res) {
         return
     }
 
-    const newRoom = newRoom(req.body)
+    const newRoom = new Room(req.body)
     newRoom.save().then(
         (result)=>{
             res.json(
@@ -114,4 +114,24 @@ export function updateRoom(req, res){
             }
         )
 
+}
+
+export function getRoomsByCategory(req, res) {
+    
+    const category = req.params.category;
+    Room.find({ category: category }).then(
+        (result) => {
+            res.json({
+                message: "Rooms found",
+                result: result
+            });
+        }
+    ).catch(
+        (err) => {
+            res.json({
+                message: "Failed to fetch rooms",
+                error: err
+            });
+        }
+    )
 }

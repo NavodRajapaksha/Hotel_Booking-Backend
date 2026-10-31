@@ -46,6 +46,8 @@ app.use('/api/gallery-items', galleryItemRoute)
 
 app.use('/api/category', categoryRoute)
 
+app.use('/api/rooms', roomRouter)
+
 app.listen(3000, (req,res) => {
   console.log('Server is running on port 3000');
 });
