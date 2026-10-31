@@ -103,3 +103,14 @@ export function isAdminValid(req){
     }
     return true
 }
+
+export function isCustomerVaild(req){
+    
+    if(req.user == null){
+        return false
+    }
+    if(req.user.role !== "customer"){
+        return false
+    }
+    return true;
+}

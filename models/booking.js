@@ -28,6 +28,10 @@ const bookingSchema = new mongoose.Schema(
             type: Date,
             required: true
         },
+        timestamp:{
+            type: Date,
+            default: Date.now
+        },
         notes:{
             type: String,
             default: ""
